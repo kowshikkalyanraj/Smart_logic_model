@@ -1,0 +1,23 @@
+# Daily Life Activity QA Database for Kowshik
+# Format: question ||| answer
+
+What time did Kowshik wake up today? ||| Kowshik woke up at 6:15 AM.
+What did Kowshik eat for breakfast? ||| He had two boiled eggs, brown bread toast, and a cup of green tea.
+Did Kowshik exercise today? ||| Yes, Kowshik did a 30-minute jog followed by light stretching.
+How many steps did Kowshik walk today? ||| He walked around 7,800 steps today.
+What tasks did Kowshik complete today? ||| He completed his Python coding tasks, attended a team meeting, and reviewed his NLP project notes.
+Did Kowshik attend any meetings or classes? ||| Yes, Kowshik attended a virtual meeting with his DevRabbit team at 11:00 AM.
+What time did Kowshik have lunch? ||| Kowshik had lunch at 1:15 PM.
+What did Kowshik eat for lunch? ||| He had rice, dal, grilled chicken, and a bowl of salad.
+Did Kowshik take any breaks today? ||| Yes, he took two short breaks for coffee and relaxation.
+What was Kowshik’s mood throughout the day? ||| He felt focused and motivated most of the day.
+Who did Kowshik talk to the most today? ||| He spoke mainly with his team lead Poorna and his reporting manager Vishwanath.
+What time did Kowshik finish work/study? ||| Kowshik completed his work by 6:45 PM.
+What did Kowshik do for relaxation in the evening? ||| He listened to music and went for a short walk.
+What did Kowshik eat for dinner? ||| He had chapati with paneer curry and a glass of buttermilk.
+Did Kowshik spend time with family or friends? ||| Yes, he spent some time talking with his family after dinner.
+What new thing did Kowshik learn or experience today? ||| He learned about Part-of-Speech tagging and Named Entity Recognition in NLP.
+Did Kowshik achieve all planned goals for today? ||| He completed most goals but plans to review the NLP project again tomorrow.
+What time did Kowshik go to sleep? ||| He plans to sleep around 10:45 PM.
+How many hours did Kowshik sleep last night? ||| He slept for 7 hours and 20 minutes last night.
+How is Kowshik feeling about today overall? ||| Kowshik feels satisfied with his progress and looks forward to improving further tomorrow.

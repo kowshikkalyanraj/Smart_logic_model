@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Logic Model 🎙️</title>
+    <style>
+        body { font-family: Arial; background: #f0f2f5; padding: 50px; }
+        #container { background: white; width: 600px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; }
+        input { width: 80%; padding: 10px; font-size: 16px; border-radius: 10px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; font-size: 16px; border-radius: 10px; margin-left: 10px; cursor: pointer; }
+        #askBtn { background-color: #4CAF50; color: white; }
+        #speakBtn { background-color: #ff5252; color: white; }
+        #answerBox { margin-top: 25px; background: #e8f5e9; padding: 15px; border-radius: 10px; text-align: left; font-size: 17px; min-height: 60px; }
+        #micIcon { font-size: 30px; margin-top: 10px; color: red; display: none; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { opacity: 0.4; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); } 100% { opacity: 0.4; transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2>🧠 Smart Logic Model</h2>
+        <input id="question" type="text" placeholder="Type or speak your question...">
+        <button id="askBtn">Ask</button>
+        <button id="speakBtn">🎤 Speak</button>
+
+        <div id="micIcon">🔴</div>
+        <div id="answerBox">Ask me anything...</div>
+    </div>
+
+    <script>
+        const askBtn = document.getElementById('askBtn');
+        const speakBtn = document.getElementById('speakBtn');
+        const questionInput = document.getElementById('question');
+        const answerBox = document.getElementById('answerBox');
+        const micIcon = document.getElementById('micIcon');
+
+        async function sendQuestion(question) {
+            answerBox.innerHTML = "⌛ Thinking...";
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question })
+            });
+            const data = await response.json();
+            answerBox.innerHTML = `<b>Answer:</b> ${data.answer}`;
+
+            // Play TTS audio
+            if (data.audio_url) {
+                const audio = new Audio(data.audio_url);
+                audio.play();
+            }
+        }
+
+        askBtn.onclick = () => {
+            const q = questionInput.value.trim();
+            if (q) sendQuestion(q);
+        };
+
+        speakBtn.onclick = () => {
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                alert("Speech recognition not supported in this browser.");
+                return;
+            }
+
+            const recognition = new SpeechRecognition();
+            recognition.lang = "en-US";
+            recognition.interimResults = false;
+
+            recognition.onstart = () => { micIcon.style.display = 'block'; answerBox.innerHTML = "🎙️ Listening..."; };
+            recognition.onresult = (event) => {
+                const transcript = event.results[0][0].transcript;
+                questionInput.value = transcript;
+                micIcon.style.display = 'none';
+                sendQuestion(transcript);
+            };
+            recognition.onerror = (event) => { micIcon.style.display = 'none'; answerBox.innerHTML = "❌ Error: " + event.error; };
+            recognition.onend = () => { micIcon.style.display = 'none'; };
+
+            recognition.start();
+        };
+    </script>
+</body>
+</html>
