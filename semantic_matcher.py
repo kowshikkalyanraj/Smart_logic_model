@@ -4,7 +4,6 @@ import numpy as np
 
 # Load a small, fast embedding model
 model = SentenceTransformer('all-MiniLM-L6-v2')
-
 def find_best_match(user_question, qa_list, threshold=0.75):
     """
     Find the most semantically similar question.
